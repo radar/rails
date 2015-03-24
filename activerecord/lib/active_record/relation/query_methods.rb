@@ -243,7 +243,7 @@ module ActiveRecord
     #   # => ActiveModel::MissingAttributeError: missing attribute: other_field
     def select(*fields)
       if block_given?
-        to_a.select { |*block_args| yield(*block_args) }
+        ActiveSupport::Deprecation.warn('Passing a block to Model.select is deprecated and will be removed.')
       else
         raise ArgumentError, 'Call this with at least one field' if fields.empty?
         spawn._select!(*fields)
