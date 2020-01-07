@@ -2,8 +2,8 @@
 
 module ActionController
   module BasicImplicitRender # :nodoc:
-    def send_action(method, *args)
-      super.tap { default_render unless performed? }
+    def run_action(*args)
+      run.tap { default_render unless performed? }
     end
 
     def default_render

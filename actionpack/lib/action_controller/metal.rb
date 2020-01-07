@@ -185,10 +185,10 @@ module ActionController
       response_body || response.committed?
     end
 
-    def dispatch(name, request, response) #:nodoc:
+    def dispatch(request, response) #:nodoc:
       set_request!(request)
       set_response!(response)
-      process(name)
+      process
       request.commit_flash
       to_a
     end
@@ -245,11 +245,11 @@ module ActionController
 
     # Direct dispatch to the controller. Instantiates the controller, then
     # executes the action named +name+.
-    def self.dispatch(name, req, res)
+    def self.dispatch(req, res)
       if middleware_stack.any?
-        middleware_stack.build(name) { |env| new.dispatch(name, req, res) }.call req.env
+        middleware_stack.build { |env| new.dispatch(req, res) }.call req.env
       else
-        new.dispatch(name, req, res)
+        new.dispatch(req, res)
       end
     end
   end

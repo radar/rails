@@ -28,9 +28,10 @@ module ActionDispatch
 
         def serve(req)
           params     = req.path_parameters
+          namespace  = controller_namespace req
           controller = controller req
           res        = controller.make_response! req
-          dispatch(controller, params[:action], req, res)
+          dispatch(namespace, params[:action], req, res)
         rescue ActionController::RoutingError
           if @raise_on_name_error
             raise
@@ -41,14 +42,21 @@ module ActionDispatch
 
       private
 
+        def controller_namespace(req)
+          req.controller_namespace
+        rescue NameError => e
+          raise ActionController::RoutingError, e.message, e.backtrace
+        end
+
         def controller(req)
           req.controller_class
         rescue NameError => e
           raise ActionController::RoutingError, e.message, e.backtrace
         end
 
-        def dispatch(controller, action, req, res)
-          controller.dispatch(action, req, res)
+        def dispatch(namespace, action, req, res)
+          action_class = namespace.const_get(action.classify)
+          action_class.dispatch(req, res)
         end
       end
 

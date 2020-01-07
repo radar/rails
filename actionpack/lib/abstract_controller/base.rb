@@ -107,6 +107,12 @@ module AbstractController
         @controller_path ||= name.sub(/Controller$/, "").underscore unless anonymous?
       end
 
+      def namespace_path
+        @namespace_path ||= begin
+          name.deconstantize.downcase.presence || controller_path
+        end
+      end
+
       # Refresh the cached action_methods when a new action_method is added.
       def method_added(name)
         super
@@ -124,16 +130,11 @@ module AbstractController
     #
     # ==== Returns
     # * <tt>self</tt>
-    def process(action, *args)
-      @_action_name = action.to_s
-
-      unless action_name = _find_action_name(@_action_name)
-        raise ActionNotFound, "The action '#{action}' could not be found for #{self.class.name}"
-      end
-
+    def process(*args)
+      @_action_name = self.class.to_s.demodulize.downcase
       @_response_body = nil
 
-      process_action(action_name, *args)
+      process_action(*args)
     end
 
     # Delegates to the class' ::controller_path
@@ -192,16 +193,9 @@ module AbstractController
       #
       # Notice that the first argument is the method to be dispatched
       # which is *not* necessarily the same as the action name.
-      def process_action(method_name, *args)
-        send_action(method_name, *args)
+      def process_action(*args)
+        run_action(*args)
       end
-
-      # Actually call the method associated with the action. Override
-      # this method if you wish to change how action methods are called,
-      # not to add additional behavior around it. For example, you would
-      # override #send_action if you want to inject arguments into the
-      # method.
-      alias send_action send
 
       # If the action name was not found, but a method called "action_missing"
       # was found, #method_for_action will return "_handle_action_missing".

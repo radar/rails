@@ -31,10 +31,10 @@ module ActionController
     include BasicImplicitRender
 
     def default_render
-      if template_exists?(action_name.to_s, _prefixes, variants: request.variant)
+      if template_exists?(action_name, _prefixes, variants: request.variant)
         render
-      elsif any_templates?(action_name.to_s, _prefixes)
-        message = "#{self.class.name}\##{action_name} is missing a template " \
+      elsif any_templates?(action_name, _prefixes)
+        message = "#{self.class.name} is missing a template " \
           "for this request format and variant.\n" \
           "\nrequest.formats: #{request.formats.map(&:to_s).inspect}" \
           "\nrequest.variant: #{request.variant.inspect}"
