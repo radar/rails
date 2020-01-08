@@ -185,10 +185,18 @@ module ActionController
       response_body || response.committed?
     end
 
-    def dispatch(request, response) #:nodoc:
+    def class_dispatch(request, response) #:nodoc:
       set_request!(request)
       set_response!(response)
       process
+      request.commit_flash
+      to_a
+    end
+
+    def dispatch(name, request, response) #:nodoc:
+      set_request!(request)
+      set_response!(response)
+      process(name)
       request.commit_flash
       to_a
     end
@@ -243,13 +251,23 @@ module ActionController
       end
     end
 
+    # Direct dispatch to the action. Instantiates the action, then
+    # executes the method named +run+.
+    def self.class_dispatch(req, res)
+      if middleware_stack.any?
+        middleware_stack.build { |env| new.class_dispatch(req, res) }.call req.env
+      else
+        new.class_dispatch(req, res)
+      end
+    end
+
     # Direct dispatch to the controller. Instantiates the controller, then
     # executes the action named +name+.
-    def self.dispatch(req, res)
+    def self.dispatch(name, req, res)
       if middleware_stack.any?
-        middleware_stack.build { |env| new.dispatch(req, res) }.call req.env
+        middleware_stack.build(name) { |env| new.dispatch(name, req, res) }.call req.env
       else
-        new.dispatch(req, res)
+        new.dispatch(name, req, res)
       end
     end
   end

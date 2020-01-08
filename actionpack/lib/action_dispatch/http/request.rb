@@ -81,10 +81,10 @@ module ActionDispatch
       controller_class_for(params[:controller])
     end
 
-    def controller_namespace
+    def action_class
       params = path_parameters
       params[:action] ||= "index"
-      controller_namespace_for(params[:controller])
+      action_class_for(params[:controller])
     end
 
     def controller_class_for(name)
@@ -97,12 +97,10 @@ module ActionDispatch
       end
     end
 
-    def controller_namespace_for(name)
-      if name
-        ActiveSupport::Dependencies.constantize(name.underscore.camelize)
-      else
-        PASS_NOT_FOUND
-      end
+    def action_class_for(action)
+      return unless action
+      klass = ActiveSupport::Dependencies.constantize(action.underscore.camelize)
+      return klass if klass.instance_methods.include?(:run)
     end
 
     # Returns true if the request has a header matching the given key parameter.

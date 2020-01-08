@@ -109,7 +109,7 @@ module AbstractController
 
       def namespace_path
         @namespace_path ||= begin
-          name.deconstantize.downcase.presence || controller_path
+          (name.presence && name.deconstantize.downcase.presence) || controller_path
         end
       end
 
@@ -130,11 +130,19 @@ module AbstractController
     #
     # ==== Returns
     # * <tt>self</tt>
-    def process(*args)
-      @_action_name = self.class.to_s.demodulize.downcase
+    def process(action = nil, *args)
       @_response_body = nil
 
-      process_action(*args)
+      if action.present?
+        @_action_name = action.to_s
+        unless action_name = _find_action_name(@_action_name)
+          raise ActionNotFound, "The action '#{action}' could not be found for #{self.class.name}"
+        end
+      else
+        @_action_name = self.class.to_s.demodulize.downcase
+      end
+
+      process_action(action_name, *args)
     end
 
     # Delegates to the class' ::controller_path
@@ -193,9 +201,15 @@ module AbstractController
       #
       # Notice that the first argument is the method to be dispatched
       # which is *not* necessarily the same as the action name.
-      def process_action(*args)
-        run_action(*args)
+      def process_action(action_name, *args)
+        if action_name
+          send_action(action_name, *args)
+        else
+          run_action(*args)
+        end
       end
+
+      alias send_action send
 
       # If the action name was not found, but a method called "action_missing"
       # was found, #method_for_action will return "_handle_action_missing".

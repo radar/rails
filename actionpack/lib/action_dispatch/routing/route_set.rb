@@ -27,11 +27,16 @@ module ActionDispatch
         def dispatcher?; true; end
 
         def serve(req)
-          params     = req.path_parameters
-          namespace  = controller_namespace req
-          controller = controller req
-          res        = controller.make_response! req
-          dispatch(namespace, params[:action], req, res)
+          params        = req.path_parameters
+          action_class  = action_class req
+          controller    = controller req
+          res           = controller.make_response! req
+          # binding.pry
+          if action_class.present?
+            action_dispatch(action_class, params[:action], req, res)
+          else
+            dispatch(controller, params[:action], req, res)
+          end
         rescue ActionController::RoutingError
           if @raise_on_name_error
             raise
@@ -42,10 +47,9 @@ module ActionDispatch
 
       private
 
-        def controller_namespace(req)
-          req.controller_namespace
-        rescue NameError => e
-          raise ActionController::RoutingError, e.message, e.backtrace
+        def action_class(req)
+          req.action_class
+        rescue NameError
         end
 
         def controller(req)
@@ -54,9 +58,13 @@ module ActionDispatch
           raise ActionController::RoutingError, e.message, e.backtrace
         end
 
-        def dispatch(namespace, action, req, res)
+        def action_dispatch(namespace, action, req, res)
           action_class = namespace.const_get(action.classify)
-          action_class.dispatch(req, res)
+          action_class.class_dispatch(req, res)
+        end
+
+        def dispatch(controller, action, req, res)
+          controller.dispatch(action, req, res)
         end
       end
 
