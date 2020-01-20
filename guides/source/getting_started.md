@@ -1,3 +1,7 @@
+**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON https://guides.rubyonrails.org.**
+
+Getting Started with Rails
+==========================
 
 This guide covers getting up and running with Ruby on Rails.
 
