@@ -760,7 +760,7 @@ With that small change done, let's now look at how we can create new articles wi
 
 To have a place to create new articles in our application, we're going to need create a new route, action and view. On that view, we're going to have this form:
 
-IMAGE GOES HERE
+![New article form](/images/getting_started/new_article.png)
 
 Let's start with the route:
 
