@@ -365,6 +365,8 @@ So far, we have seen routes, controllers, actions and views within our Rails app
 
 So with "MVC", you might guess that the "V" stands for "View" and the "C" stands for controller, but you might have trouble guessing what the "M" stands for. This next section is all about that "M" part, the _model_.
 
+### Generating an Article model
+
 A model is a class that is used to represent data in our application. In a plain-Ruby application, you might have a class defined like this:
 
 ```ruby
@@ -956,8 +958,6 @@ When Rails receives a `POST /articles` request, it will now route that request t
 ![Unknown action create for ArticlesController](images/getting_started/unknown_action_create_for_articles.png)
 
 You now need to create the `create` action within the `ArticlesController` for this to work.
-
-### Creating Articles
 
 To make the "Unknown action" go away, we can define a `create` action within the `ArticlesController` class in `app/controllers/articles_controller.rb`, underneath the `new` action, as shown:
 
@@ -1809,7 +1809,7 @@ Adding Comments
 
 Let's expand this application a little further by adding the ability for users to leave comments on articles.
 
-### Generating a Model
+### Generating a Comment Model
 
 To start with, we're going to generate a model for comments.
 
