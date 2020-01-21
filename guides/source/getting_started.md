@@ -321,7 +321,7 @@ If we go back to our browser and make a request to <http://localhost:3000/articl
 
 Now that we have made the route, controller, action and view, let's make a small change to our routes. In this application, we're going to change it so that our message appears at <http://localhost:3000/> and not just <http://localhost:3000/articles>. At the moment, at <http://localhost:3000> it still says "Yay! You're on Rails!".
 
-To change this, we need to tell our routes file where the _root path_ of our application is.
+To change this, we need to tell our routes file where the _root path_ of our application is. If we do not do this, Rails will continue to display the "Yay! You're on Rails!" page.
 
 Open the file `config/routes.rb` in your editor.
 
