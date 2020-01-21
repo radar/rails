@@ -380,9 +380,11 @@ class Article
 end
 ```
 
-Models in a Rails application are designed for this purpose too: to represent particular data.
+Models in a Rails application are used in the same way: they represent data.
 
-Models have another purpose in a Rails application too though. They're also used to interact with the application's database. In this section, we're going to use a model to put data into our database and to pull that data back out.
+Models have another purpose in a Rails application as well. They're also used to interact with the application's database. Models use a part of Rails called Active Record to interact with the database of the application.
+
+In this section, we're going to use a model to put data into our database and to pull that data back out, using methods that are provided to us from Active Record.
 
 To start with, we're going to need to generate a model. We can do that with the following command:
 
