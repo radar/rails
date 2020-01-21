@@ -359,6 +359,64 @@ server`) and navigate to <http://localhost:3000> in your browser. You'll see the
 indicating that this new route is indeed going to `ArticleController`'s `index`
 action and is rendering the view correctly.
 
+If we go back into our terminal, we can see this whole flow laid out for us:
+
+```
+Started GET "/" for ::1 at [timestamp]
+   (0.1ms)  SELECT sqlite_version(*)
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (Duration: 0.5ms | Allocations: 84)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.0ms | Allocations: 4989)
+```
+
+The first line shows us the request that is coming into our application. It's a `GET /` request. This means that the `root` route will match this request.
+
+The next line is a database query -- `SELECT sqlite_version(*)` -- that we can ignore for now.
+
+The third line shows us that Rails is going to process this request by using the `ArticlesController`, and its `index` action. The _format_ for this request is HTML. This means that the browser is expecting Rails to return HTML as a response to this request.
+
+The fourth + fifth lines show that the `articles/index.html.erb` view is being used in this request. The `layouts/application` mentioned here is located at `app/views/layouts/application.html.erb`. This file contains the following content:
+
+```erb
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+```
+
+This file is the common bits of HTML that will be wrapped around whatever our views return. The view's output goes right inside that `<body>` tag, where `<%= yield %>` is.
+
+The next line is:
+
+```
+[Webpacker] Everything's up-to-date. Nothing to do
+```
+
+Webpacker is a gem that comes with Rails that manages our assets. Right now, we don't have any assets and so we can ignore this line, and Webpacker in general.
+
+The final line is this:
+
+```
+Completed 200 OK in 10ms (Views: 7.9ms | ActiveRecord: 0.0ms | Allocations: 4989)
+```
+
+It tells us that the request completed successfully. We know it's successful because we saw it ourselves, but also because this line contains `200 OK`, which is the HTTP status code for successful responses. The rest of the information on this line is performance metrics.
+
+We have now finished rendering our first view. We created two routes that go to the same action -- `GET /` and `GET /articles`. That action is the `index` action in the `ArticlesController`. When we make a request to either of these paths, the `app/views/articles/index.html.erb` view is rendered, wrapped in the `app/views/layouts/application.html.erb` layout.
+
 TIP: For more information about routing, refer to [Rails Routing from the Outside In](routing.html).
 
 ## Adding Articles
