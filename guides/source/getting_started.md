@@ -332,10 +332,12 @@ Rails.application.routes.draw do
 end
 ```
 
-Underneath the line that is there, add this line:
+Underneath the line that is there already, add this line:
 
 ```ruby
 Rails.application.routes.draw do
+  get "/articles", to: "articles#index"
+
   root to: "articles#index"
 end
 ```
