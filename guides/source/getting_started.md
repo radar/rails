@@ -359,8 +359,7 @@ action and is rendering the view correctly.
 
 TIP: For more information about routing, refer to [Rails Routing from the Outside In](routing.html).
 
-Creating a model
-------------------------
+## Adding Articles
 
 So far, we have seen routes, controllers, actions and views within our Rails application. All of these are conventional parts of Rails applications and it is done this way to follow the MVC pattern. The MVC pattern is an application design pattern which makes it easy to separate the different responsibilities of applications into easy to reason about pieces.
 
@@ -534,8 +533,7 @@ This method returns an `ActiveRecord::Relation` object, which you can think of a
 
 As you can see, models are very helpful classes for interacting with databases within Rails applications. Models are the final piece of the "MVC" puzzle. Let's look at how we can go about connecting all these pieces together into a cohesive whole.
 
-Getting Up and Running
-----------------------
+### Viewing a list of articles
 
 Now that you've seen how to create a route, a controller, an action, a view and a model, let's connect these pieces together.
 
@@ -606,7 +604,7 @@ We've now successfully connected all the different parts of our Rails applicatio
 
 Let's move on to the second action!
 
-### Viewing an Article
+### Viewing a single Article
 
 For our second action, we want our application to show us the details about an article, specifically the article's title and body:
 
@@ -2189,12 +2187,9 @@ Now you can add articles and comments to your blog and have them show up in the 
 
 ![Article with Two Comments](/images/getting_started/article_with_two_comments.png)
 
-Refactoring
------------
+### Rendering Partial Collections
 
 Now that we have articles and comments working, take a look at the `app/views/articles/show.html.erb` template. It is getting long and awkward. We can use partials to clean this view up.
-
-### Rendering Partial Collections
 
 First, we will make a comment partial to extract showing all the comments for the article. Create the file `app/views/comments/_comment.html.erb` and put the following into it:
 
@@ -2278,8 +2273,7 @@ Then you make the `app/views/articles/show.html.erb` look like the following:
 
 This is the second version of the `render` method: it will render that partial at `app/views/comments/_form.html.erb` and pass through the instance variable of `@article` as a local variable called `article` to that partial.
 
-Deleting Comments
------------------
+### Deleting Comments
 
 Another important feature of a blog is being able to delete spam comments. To do this, we need to implement a link of some sort in the view and a `destroy`
 action in the `CommentsController`.
