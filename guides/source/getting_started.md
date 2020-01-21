@@ -261,7 +261,7 @@ This is your application's _routing file_ which holds entries in a special
 [DSL (domain-specific language)](https://en.wikipedia.org/wiki/Domain-specific_language) that tells Rails how to connect incoming requests to
 controllers and actions.
 
-The line that we have just added says that we are going to match a `GET /welcome` request to `welcome#index`. This string passed as the `to` option represents the _controller_ and _action_ that will be responsible for handling this request.
+The line that we have just added says that we are going to match a `GET /articles` request to `articles#index`. This string passed as the `to` option represents the _controller_ and _action_ that will be responsible for handling this request.
 
 Controllers are classes that group together common methods for handling a particular _resource_. The methods inside controllers are given the name "actions", as they _act upon_ requests as they come in.
 
