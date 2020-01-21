@@ -305,7 +305,7 @@ end
 
 This controller defines a single action, or "method" in common Ruby terms, called `index`. This action is where we would define any logic that we would want to happen when a request comes in to this action. Right at this moment, we don't want this action to do anything, and so we'll keep it blank for now.
 
-When an action is left blank like this, Rails will default to rendering a view that matches the name of the controller, and the name of the action. That view is going to be `app/views/articles/index.html.erb`.
+When an action is left blank like this, Rails will default to rendering a view that matches the name of the controller and the name of the action. Views in a Rails application live in `app/views`, and so the default view for this action is going to be `app/views/articles/index.html.erb`.
 
 Open the `app/views/articles/index.html.erb` file in your text editor. Delete all
 of the existing code in the file, and replace it with the following single line
