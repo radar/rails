@@ -217,7 +217,7 @@ This will fire up Puma, a web server distributed with Rails by default. To see
 your application in action, open a browser window and navigate to
 <http://localhost:3000>. You should see the Rails default information page:
 
-![Yay! You're on Rails! screenshot](/images/getting_started/rails_welcome.png)
+![Yay! You're on Rails! screenshot](images/getting_started/rails_welcome.png)
 
 TIP: To stop the web server, hit Ctrl+C in the terminal window where it's
 running. To verify the server has stopped you should see your command prompt
@@ -575,7 +575,7 @@ When we start an ERB tag with either `<%` or `<%=`, it can help to think "I am n
 
 When the view is used by Rails, the embedded Ruby will be evalulated, and the page will show our list of articles. Let's go to <http://localhost:3000> now and see the list of articles:
 
-![List of articles](/images/getting_started/article_list.png)
+![List of articles](images/getting_started/article_list.png)
 
 If we look at the source of the page in our browser <view-source:http://localhost:3000/>, we'll see this part:
 
@@ -602,7 +602,7 @@ Here's what's happened to get to this point:
 
 Here's a flowchart of the above steps:
 
-![Application flowchart](/images/getting_started/application_flowchart.png)
+![Application flowchart](images/getting_started/application_flowchart.png)
 
 We've now successfully connected all the different parts of our Rails application together: the router, the controller, the action, the model and the view. With this connection, we have finished the first action of our application.
 
@@ -612,7 +612,7 @@ Let's move on to the second action!
 
 For our second action, we want our application to show us the details about an article, specifically the article's title and body:
 
-![Single Article View](/images/getting_started/single_article_view.png)
+![Single Article View](images/getting_started/single_article_view.png)
 
 We'll start in the same place we started with the `index` action, which was in `config/routes.rb`. We'll add a new route for this page. Let's change our routes file now to this:
 
@@ -655,7 +655,7 @@ The `show` action finds a particular article with that ID. Once it has that, it 
 
 Now when we go to <http://localhost:3000/articles/1> we will see the article:
 
-![Single Article View](/images/getting_started/single_article_view.png)
+![Single Article View](images/getting_started/single_article_view.png)
 
 Excellent! We now have our second action working in our controller. But in order to navigate to it, we have to manually type in <http://localhost:3000/articles/1>. That seems a bit silly. Let's change our application a little, so that we can navigate to an article by clicking a link from the list of articles.
 
@@ -689,11 +689,11 @@ This code will render an `li` element for each of the articles, and that element
 
 This `a` tag will provide us with a link to the specific article. If we go back to <http://localhost:3000/>, we'll see that we can now click on the articles:
 
-![Articles list with links](/images/getting_started/articles_list_with_links.png)
+![Articles list with links](images/getting_started/articles_list_with_links.png)
 
 Clicking either of these links will take us to the relevant article:
 
-![Single Article View](/images/getting_started/single_article_view.png)
+![Single Article View](images/getting_started/single_article_view.png)
 
 Now we have been able to link together the `index` and `show` pages in our application using a simple `a` tag. What could be simpler than that?
 
@@ -766,7 +766,7 @@ With that small change done, let's now look at how we can create new articles wi
 
 To have a place to create new articles in our application, we're going to need create a new route, action and view. On that view, we're going to have this form:
 
-![New article form](/images/getting_started/new_article.png)
+![New article form](images/getting_started/new_article.png)
 
 Let's start with the route:
 
@@ -911,7 +911,7 @@ The labels and fields are mostly the way they were, with a key difference: the `
 
 Speaking of, let's try and fill out this form now with a title and a body for our 3rd article:
 
-![The third article](/images/getting_started/article_the_third.png)
+![The third article](images/getting_started/article_the_third.png)
 
 There's one problem with this form though. If you inspect the HTML that is generated, by viewing the source of the page, you will see that the `action` attribute for the form is pointing at `/articles/new`. This is a problem because this route goes to the very page that you're on right at the moment, and that route should only be used to display the form for a new article.
 
@@ -928,7 +928,7 @@ Edit the `form_with` line inside `app/views/articles/new.html.erb` to look like 
 
 Once the form is submitted, it will send a `POST` request to `/articles`. If we hit submit on that form now, we'll be shown a Routing Error:
 
-![Routing Error](/images/getting_started/routing_error_post_articles.png)
+![Routing Error](images/getting_started/routing_error_post_articles.png)
 
 This error means that we haven't set up a route to handle `POST` requests to `/articles`. If we look in our `config/routes.rb` file, we'll see that is correct:
 
@@ -1070,7 +1070,7 @@ Before we wrap up this section, let's add a link to `app/views/articles/index.ht
 
 Now we'll have an easy link to go back to that page:
 
-![Three articles](/images/getting_started/three_articles.png)
+![Three articles](images/getting_started/three_articles.png)
 
 Great! That's another two actions finished in our controller: `new` and `create`.
 
@@ -1266,7 +1266,7 @@ Now what should happen if we make a mistake when creating an article? Well, we s
 
 Our edit form will look just like our new form, just with a few differences:
 
-![Edit form](/images/getting_started/edit_form.png)
+![Edit form](images/getting_started/edit_form.png)
 
 Firstly, the title will say "Edit Article", not "New Article". Secondly, the fields will be filled out with the article's current values. And lastly, the submit button says "Update Article", not "Save Article".
 
@@ -1301,11 +1301,11 @@ As a first step, let's add an "Edit" link for each article on `app/views/article
 
 This "Edit" link will now appear next to all of the articles at <http://localhost:3000/articles>.
 
-![Articles with edit links](/images/getting_started/articles_with_edit.png)
+![Articles with edit links](images/getting_started/articles_with_edit.png)
 
 If we click on any one of those "Edit" links, we'll see that we haven't yet defined the `edit` action.
 
-![No edit action](/images/getting_started/no_edit_action.png)
+![No edit action](images/getting_started/no_edit_action.png)
 
 So the next step here is to add that action to our controller. Let's open `app/controllers/articles_controller.rb` and add that action:
 
@@ -1388,7 +1388,7 @@ Firstly, the `action` attribute for this form goes to a route called `/articles/
 
 This means that our form will make a `PATCH /articles/1` request when it is submitted. If we hit submit on the form, we'll see that this is correct, and that this route is currently missing:
 
-![No route matches [PATCH] "/articles/1"](/images/getting_started/no_route_for_patch_articles.png)
+![No route matches [PATCH] "/articles/1"](images/getting_started/no_route_for_patch_articles.png)
 
 This route is supposed to handle the submission of our form, but the route does not exist yet. To make this form work, we'll need to define this route. Let's go back to `config/routes.rb` and define this route:
 
@@ -1437,7 +1437,7 @@ TIP: It is not necessary to pass all the attributes to `update`. For example, if
 
 Let's try this again. We'll go to <http://localhost:3000>, click the "Edit" link next to one of the articles and change its title. I'm going to change the "Hello Rails" article's title to "Hello Rails, how are you today?". When this happens and we submit the form, we will see the new title for that article:
 
-![How are you, Rails?](/images/getting_started/how_are_you_rails.png)
+![How are you, Rails?](images/getting_started/how_are_you_rails.png)
 
 On this page, we're currently missing a way to edit an article. This route that we're currently on is <http://localhost:3000/articles/1>, and we know that the route matches to `app/views/articles/show.html.erb`.
 
@@ -1612,7 +1612,7 @@ This will make the link make a `DELETE /articles/:id` request. The `DELETE` HTTP
 
 We can now refresh this page and click one of these "Delete" links. This request currently won't work, because we don't have a `DELETE /articles/:id` route set up:
 
-![No delete route](/images/getting_started/no_delete_route.png)
+![No delete route](images/getting_started/no_delete_route.png)
 
 Let's add this route to `config/routes.rb`:
 
@@ -1720,7 +1720,7 @@ TIP: Learn more about Unobtrusive JavaScript on
 
 When we refresh this page and click "Delete" once again, we'll see a new dialog box appear:
 
-![Confirm Dialog](/images/getting_started/confirm_dialog.png)
+![Confirm Dialog](images/getting_started/confirm_dialog.png)
 
 If you press "Cancel" on this box, nothing will happen. The article will _not_ be deleted. But if you press "OK", then the article will be deleted. Rails provides this option on links just for links like this "Delete" link. We want people to be _really sure_ that they mean to delete articles before they actually do it!
 
@@ -2014,7 +2014,7 @@ Now that we can create comments on articles, it would be really useful to displa
 
 The new code that we've just added to this view will go through all of the article's comments and display the commenter and the comment that was made. When we go to <http://localhost:3000/articles/1> now, we should see this comment appear:
 
-![Article with comments](/images/getting_started/article_with_comments.png)
+![Article with comments](images/getting_started/article_with_comments.png)
 
 Well, that was pretty straight forward! Rails has given us an easy way to list all of the article comments, by way of the `has_many` method in the `Article` model.
 
@@ -2056,7 +2056,7 @@ We're going to be building a new comment for the purposes of saving it to the da
 
 If we refresh <http://localhost:3000/articles/1>, we'll see an error message which hints a little bit at this nested route:
 
-![NoMethodError: article_comments_path](/images/getting_started/no_method_error_article_comments_path.png)
+![NoMethodError: article_comments_path](images/getting_started/no_method_error_article_comments_path.png)
 
 The `form_with` helper here is attempting to use a routing helper called `article_comments_path` to generate the route for the form. This routing helper doesn't exist yet, and we'll create it in a moment. But first, let's talk about how Rails came to be wanting `article_comments_path` in the first place.
 
@@ -2119,7 +2119,7 @@ guide.
 
 When we fill out the comment form and click "Create Comment", we'll now see that the `CommentsController` is missing:
 
-![Comments Controller missing](/images/getting_started/comments_controller_missing.png)
+![Comments Controller missing](images/getting_started/comments_controller_missing.png)
 
 ### Generating a Controller
 
@@ -2142,7 +2142,7 @@ This creates four files and one empty directory:
 
 If we attempt to submit the form again, we'll see that the `create` action is missing in this new controller:
 
-![Create action missing in CommentsController](/images/getting_started/create_action_comments_controller.png)
+![Create action missing in CommentsController](images/getting_started/create_action_comments_controller.png)
 
 Let's wire up the `create` in `app/controllers/comments_controller.rb`:
 
@@ -2187,7 +2187,7 @@ If we fill out the comment form again, we will see our comment appear.
 
 Now you can add articles and comments to your blog and have them show up in the right places.
 
-![Article with Two Comments](/images/getting_started/article_with_two_comments.png)
+![Article with Two Comments](images/getting_started/article_with_two_comments.png)
 
 ### Rendering Partial Collections
 
@@ -2317,7 +2317,7 @@ But Rails' routing conventions save us some time and keystrokes by allowing us t
 
 Clicking this new "Destroy Comment" link will fire off a `DELETE /articles/:article_id/comments/:id` to our `CommentsController`, which can then use this to find the comment we want to delete. Right now, the `destroy` action that matches that route is missing, and so we will see this if we attempt to delete a comment:
 
-![Destroy not found](/images/getting_started/comments_destroy_not_found.png)
+![Destroy not found](images/getting_started/comments_destroy_not_found.png)
 
 So let's add a `destroy` action
 to our controller (`app/controllers/comments_controller.rb`):
@@ -2352,7 +2352,7 @@ If we attempt to delete a comment again, this time it will disppaear.
 
 If you delete an article, its associated comments will also need to be deleted, otherwise we would see an `ActiveRecord::InvalidForeignKey` error happen:
 
-![Foreign key constraint](/images/getting_started/foreign_key_constraint.png)
+![Foreign key constraint](images/getting_started/foreign_key_constraint.png)
 
 This error happens because the database will not allow `comments` to be without an associated article, due to this line in the `db/migrate/[timestamp]_create_comments.rb` migration:
 
