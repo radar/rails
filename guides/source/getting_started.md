@@ -392,7 +392,7 @@ To start with, we're going to need to generate a model. We can do that with the 
 $ bin/rails g model article title:string body:text
 ```
 
-NOTE: The model name here is _singular_, because model classes are classes that are used to represent single instances. To help remember this rule, in a Ruby application to start building a new object, you would define the class as `Article`, and then do `Article.new`, not `Articles` and `Articles.new`.
+NOTE: The model name here is _singular_, because model classes are classes that are used to represent single instances. To help remember this rule, in a Ruby application to start building a new object, you would define the class as `Article`, and then do `Article.new`, not `Articles` and `Articles.new`. In plain English: we want to "build a _new article_", not a "_new articles_".
 
 When this command runs, it will generate the following files:
 
