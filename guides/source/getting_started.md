@@ -450,10 +450,10 @@ rails db:migrate
 This command will show us output indicating that the table was created:
 
 ```plaintext
-== 20200118233119 CreateArticles: migrating ===================================
+== [timestamp] CreateArticles: migrating ===================================
 -- create_table(:articles)
    -> 0.0018s
-== 20200118233119 CreateArticles: migrated (0.0018s) ==========================
+== [timestamp] CreateArticles: migrated (0.0018s) ==========================
 ```
 
 Now that we have a table in our application's database, we can use the model to interact with this table.
