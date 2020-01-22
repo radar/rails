@@ -817,7 +817,6 @@ We now have an `index` action that lists the articles, and a `show` action that 
 <div>
   <%= link_to "Back", "/" %>
 </div>
-
 ```
 
 This will allow us to navigate back to the list of articles easily.
