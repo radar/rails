@@ -633,7 +633,7 @@ There's two types of ERB tag beginnings that we're using here: `<%` and `<%=`. T
 
 In this view, we do not want the output of `articles.each` to show, and so we use a `<%`. But we do want each of the articles' titles to appear, and so we use `<%=`.
 
-When we start an ERB tag with either `<%` or `<%=`, it can help to think "I am now writing Ruby, not HTML". Anything you could write in a regular Ruby program, can go inside these ERB tags.
+When we start an ERB tag with either `<%` or `<%=`, it can help to think "I am now writing Ruby, not HTML". Anything you could write in a regular Ruby program, can go inside these ERB tags; but usually we would keep the content of the ERB tags short, for readability.
 
 When the view is used by Rails, the embedded Ruby will be evalulated, and the page will show our list of articles. Let's go to <http://localhost:3000> now and see the list of articles:
 
