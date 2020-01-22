@@ -707,7 +707,7 @@ end
 
 When a request is made to this `show` action, it will be made to a URL such as <http://localhost:3000/articles/1>. Rails sees that the last part of that route is a dynamic parameter, and makes that parameter available for us in our controller through the method `params`. We use `params[:id]` to access that parameter, because back in the routes file we called the parameter `:id`. If we used a name like `:article_id` in the routes file, then we would need to use `params[:article_id]` here too.
 
-The `show` action finds a particular article with that ID. Once it has that, it needs to then display that article's information, which will do by attempting to use a view at `app/views/articles/show.html.erb`. Let's create that file now and add this content:
+The `show` action finds a particular article with that ID by using the `Article` model's method `find`, and passing `find` that `params[:id]` parameter. Once the action has found our article, it needs to then display that article's information, which will do by attempting to use a view at `app/views/articles/show.html.erb`. Let's create that file now and add this content:
 
 ```erb
 <h1><%= @article.title %></h1>
