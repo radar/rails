@@ -1088,7 +1088,7 @@ Why do you have to bother? The ability to grab and automatically assign all cont
 We have to define our permitted controller parameters to prevent wrongful mass assignment. In this case, we want to both allow and require the `title` and `body` parameters for valid use of `create`. The syntax for this introduces `require` and `permit`. The change will involve one line in the `create` action:
 
 ```ruby
-  @article = Article.new(params.require(:article).permit(:title, :body))
+@article = Article.new(params.require(:article).permit(:title, :body))
 ```
 
 This code is quite long and is often pulled out into its own method so it can be reused by multiple actions in the same controller. Above and beyond mass assignment issues, the method is often made `private` to make sure it can't be called outside its intended context. Here is the result:
